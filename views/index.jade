@@ -1,0 +1,54 @@
+//
+   Created by rob on 12/03/16.
+
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+doctype html
+html
+    head
+         title= title
+         link(rel='stylesheet', href='stylesheets/style2.css')
+
+
+    block body
+        +navbar("Colenso Project", "dropdown_menu")
+            +nav_item("/", "active") Home
+            +nav_item("/searchpage") Documents
+
+
+        +img-responsive-center("images/logo.jpg","Responsive Image")
+
+        div.boxes
+            link(rel='stylesheet', href='stylesheets/style2.css')
+            .row
+                .col-md-3
+                    div.first
+                        div.head
+                            p Historical Documents
+                            a(href="/searchpage")
+                                +img-responsive-center("images/letter.jpg", "Responsive Image", "/searchpage")
+                            div.foot
+                                p #[a(href="/searchpage") Search all documents]
+                .col-md-3
+                    div.second
+                .col-md-3
+                    div.third
+                .col-md-3
+                    div.fourth
+                        div.head
+                            p Our Partners
+                        .row
+                            .col-sm-6
+                                +img-responsive("images/mtg.jpg", "Responsive Image")
+                            .col-sm-6
+                                +img-responsive("images/society.png", "Responsive Image")
+                        .row
+                            p
+                            .col-sm-6
+                                +img-responsive("images/vic.png", "Responsive Image")
+                            .col-sm-6
+                        div.foot
+                            p #[a(href="#") Read more about our partners]
+
+
+

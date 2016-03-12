@@ -1,0 +1,34 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/public/stylesheets/style.css')
+
+    block body
+          +navbar("Colenso Project", "dropdown_menu")
+            +nav_item("/") Home
+            +nav_item("/searchpage","active") Documents
+          + img-responsive-center("images/logo.jpg","Responsive Image")
+          .container
+            h1 #{title}
+            .container
+            p Welcome to #{title}. Home of historical documents.
+
+            +tab-list(["Search", "Submit"],0)
+                +tab("Search","active")
+                    h1 Document Search
+                    p This is the tab for searching documents
+                    div.row
+                        div.col-md-3
+                            form(id = 'searchbox', name ='search', action='/search', method='GET')
+                                +input("text","text","Search","Search", value = "search")
+
+                    p #{xmlstuff}
+
+                +tab("Submit")
+                    h1 Historical Document Submission
+                    p  Here you can enter the XML for a new document and add it to our database!
+
+
