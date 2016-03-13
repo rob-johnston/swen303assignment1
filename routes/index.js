@@ -62,25 +62,40 @@ router.get('/search', function(req, res, next) {
 });
 
 
+
+
 router.post('/submit', function(req, res, next) {
 
     //router.use(bodyParser.text());
     client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
-    client.execute('open Colenso_TEIs');
-    //get the text
 
+    client.execute('open Colenso_TEIs', function(error, result){
+        if(error){
+         console.log("error opening DB");
+        }
+        else {
+            console.log("DB opened");
+        }
+    });
+
+    //get text
     console.log(req.body.Submit);
-    client.add("/myNewlySubmittedFile.xml", req.body.Submit)
+    console.log(req.body.name);
+    client.add(req.body.name, req.body.Submit, function(error, result){
+        if(error){
+            console.log("something went wrong when adding");
+            res.render('searchpage', { title: 'Colenso Project', submissionMessage: "file submited to database",test:false, message:"Problem while uploading, document no submitted!"});
+        }
+        else {
+            console.log("file submitted");
+            res.render('searchpage', { title: 'Colenso Project', submissionMessage: "file submited to database",test:false, message:"Document Submitted!"});
+        }
+    });
 
 
-
-        res.render('searchpage', { title: 'Colenso Project', submissionMessage: "file submited to database",test:false, message:"Document Submitted!"});
-
-        client.execute('exit', function () {
+            client.execute('exit', function () {
             console.log('session exited');
-        });
-
-
+    });
 
 });
 
