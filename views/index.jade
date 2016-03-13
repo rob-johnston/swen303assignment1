@@ -17,6 +17,8 @@ html
 
 
         +img-responsive-center("images/logo.jpg","Responsive Image")
+        div.minititle
+            h2 A celebration of his life and ideas
 
         div.boxes
             link(rel='stylesheet', href='stylesheets/style2.css')
@@ -26,13 +28,24 @@ html
                         div.head
                             p Historical Documents
                             a(href="/searchpage")
-                                +img-responsive-center("images/letter.jpg", "Responsive Image", "/searchpage")
+                                +img-responsive-center("images/letter2.jpg", "Responsive Image", "/searchpage")
                             div.foot
                                 p #[a(href="/searchpage") Search all documents]
                 .col-md-3
                     div.second
+                        div.head
+                            p The Project
+                            a(href="/#")
+                                +img-responsive-center("images/printingpress.png", "Responsive Image", "/#")
+                            div.foot
+                                p #[a(href="/#") Read about the project]
                 .col-md-3
                     div.third
+                        p William Colenso
+                            a(href="/#")
+                                +img-responsive-center("images/william.jpg", "Responsive Image", "/#")
+                            div.foot
+                                p #[a(href="/#") Read about William Colenso]
                 .col-md-3
                     div.fourth
                         div.head
@@ -50,5 +63,17 @@ html
                         div.foot
                             p #[a(href="#") Read more about our partners]
 
+        div.bottom
+            link(rel='stylesheet', href='stylesheets/style2.css')
+            .col-md-3
+                ul#listings
+                    li this is
+                    li stuff that
+                    li i want to
+                    li write
+            .col-md-3
 
+
+            .col-md-3
+                p some more text
 

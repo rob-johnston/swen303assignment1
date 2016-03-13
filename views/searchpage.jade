@@ -4,7 +4,7 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='/public/stylesheets/style.css')
+        link(rel='stylesheet', href='stylesheets/style.css')
 
     block body
           +navbar("Colenso Project", "dropdown_menu")
@@ -16,19 +16,45 @@ html
             .container
             p Welcome to #{title}. Home of historical documents.
 
-            +tab-list(["Search", "Submit"],0)
-                +tab("Search","active")
-                    h1 Document Search
-                    p This is the tab for searching documents
-                    div.row
-                        div.col-md-3
-                            form(id = 'searchbox', name ='search', action='/search', method='GET')
-                                +input("text","text","Search","Search", value = "search")
+            if test
+                +tab-list(["Search", "Submit"],0)
 
-                    p #{xmlstuff}
 
-                +tab("Submit")
-                    h1 Historical Document Submission
-                    p  Here you can enter the XML for a new document and add it to our database!
+                        +tab("Search",  "active")
+                            h1 Document Search
+                            p This is the tab for searching documents
+                            div.row
+                                div.col-md-3
+                                    form(id = 'searchbox', name ='search', action='/search', method='GET')
+                                        +input("text","text","Search","Search", value = "search")
+                                        p #{submissionmessage}
+                            p #{xmlstuff}
+
+                        +tab("Submit")
+                            h1 Historical Document Submission
+                            p  Here you can enter the XML for a new document and add it to our database!
+                            form(id = 'submitbox', name ='submit', action='/submit', method='POST')
+                                +input("text","text","Submit","Submit", value = "Submit")
+            else
+                +tab-list(["Search", "Submit"],0)
+
+
+                    +tab("Search")
+                        h1 Document Search
+                        p This is the tab for searching documents
+                        div.row
+                            div.col-md-3
+                                form(id = 'searchbox', name ='search', action='/search', method='GET')
+                                    +input("text","text","Search","Search", value = "search")
+                                    p #{submissionmessage}
+                        p #{xmlstuff}
+
+                    +tab("Submit", "active")
+                        h1 Historical Document Submission
+                        p  Here you can enter the XML for a new document and add it to our database!
+                        form(id = 'submitbox', name ='submit', action='/submit', method='POST')
+                            +input("text","text","Submit","Submit", value = "Submit")
+                        p #{message}
+
 
 
