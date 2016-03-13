@@ -11,10 +11,12 @@ body {
 }
 
 .bottom {
-  height:200px;
-  width:100%;
-  background-color: #7b9739;
-  margin-top:100px;
+
+    height:200px;
+    width:100%;
+    background-color: #839f39;
+    margin-top:100px;
+    font-color: #e5e5e5;
 }
 
 .inputBox {

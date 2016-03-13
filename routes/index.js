@@ -41,15 +41,29 @@ router.get('/search', function(req, res, next) {
 
     var myquery = ' /descendant-or-self::*[text() contains text "' + query.search + '\"]';
 
+    var result = client.query(myquery);
+
+
+
+    /////////////////////some testing code
+    result.results(function(error, result){
+        if(error){
+            console.log("errahhh");
+        }
+
+    });
+    ///////////////////////ends here
+
+
     //client.query(myquery, function (err, result) {
      //   if (err) throw err;
-        var result = client.query(myquery);
+
         result.execute( function(error, result){
             if(error) {
                 console.error(error);
             } else{
                 console.log(result);
-                res.render('searchpage', {xmlstuff: result.result, title: 'Colenso Project', test:true});
+                res.render('searchpage', { xmlstuff: result.result, title: 'Colenso Project', test:true});
             }
         });
 
@@ -81,6 +95,7 @@ router.post('/submit', function(req, res, next) {
     //get text
     console.log(req.body.Submit);
     console.log(req.body.name);
+
     client.add(req.body.name, req.body.Submit, function(error, result){
         if(error){
             console.log("something went wrong when adding");

@@ -16,7 +16,7 @@
     margin-left:100px;
     margin-right:200px;
     min-width:200px;
-    max-height:300;
+
 }
 
 .first{
@@ -64,10 +64,10 @@
 }
 
 .bottom {
-
+    font-color:#5e5e5e;
     height:200px;
     width:100%;
-    background-color: #7b9739;
+    background-color: #839f39;
     margin-top:100px;
 }
 
