@@ -22,20 +22,15 @@ html
                 br
                 br
                 div.row
-                    div.col-md-3
+                    div.col-md-4
                         form(id = 'searchbox', name ='search', action='/search', method='GET')
-
-                            +input("text","text","Search","Search", value = "search")
-                            if queryType="stanjjdj'nard"
-                                input(type="radio", name="query", value="standard")
-                                br
-                                br
-                                input(type="radio", name="query", value="jquery")
-                            else
-                                input(type="radio", name="query", value="standard")
-                                br
-                                br
-                                input(type="radio", name="query", value="jquery",checked)
+                            +input("text","text","Search","Search", value = "search", length=100)
+                            br
+                            input(type="radio", name="query", value="standard",checked)
+                            p Standard Search
+                            input(type="radio", name="query", value="jquery")
+                            p JQUERY search
+                            +submit("Submit")
 
                 br
                 br

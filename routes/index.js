@@ -26,7 +26,7 @@ router.get('/searchpage', function(req, res, next) {
     var url_parts = url.parse(req.url, true)
     var query = url_parts.query;
 
-    res.render('searchpage', {title: 'Colenso Project', test:"active", queryType: query.queryType});
+    res.render('searchpage', {title: 'Colenso Project', test: "active", queryType: query.queryType});
 });
 
 /* GET submit page. */
@@ -35,6 +35,15 @@ router.get('/submit', function(req, res, next) {
 
     res.render('submit', {title: 'Colenso Project', test:"active"});
 });
+
+/* GET edit page. */
+router.get('/edit', function(req, res, next) {
+    text="";
+
+    res.render('edit', {title: 'Colenso Project'});
+});
+
+
 
 
 
@@ -47,12 +56,50 @@ router.get('/search', function(req, res, next) {
     var query = url_parts.query;
     console.log(query.query)
 
+    //if query type is standard do a normal style database search
+    if(query.query==="standard"){
 
-    client.execute('open Colenso_TEIs');
-    var myquery = ' /descendant-or-self::*[text() contains text "' + query.search + '\"]';
-    var result = client.query(myquery);
+        //figure out proper query for string with multiple words
+        var arrayOfWords = query.search.split(" ");
 
-        result.execute( function(error, result){
+        var altquery = '';
+        client.execute('open Colenso_TEIs');
+        //loop through to construct string query
+        for(var i = 0; i<arrayOfWords.length; i++){
+            altquery = altquery + ' /descendant-or-self::*[text() contains text "' + arrayOfWords[i] + '\"] | ';
+        }
+        //s
+        altquery = altquery.substring(0,altquery.length-3);
+
+        var myquery = ' /descendant-or-self::*[text() contains text "' + query.search + '\"]';
+        var result = client.query(altquery);
+
+            result.execute( function(error, result){
+                if(error) {
+                    console.error(error);
+                } else{
+                    //result.result=result.result.replace(/<\/p>/g,"\n");
+                    res.render('searchpage', { xmlstuff: result.result, title: 'Colenso Project', queryType: query.query});
+                }
+            });
+            client.execute('exit', function () {
+                console.log('session exited');
+            });
+
+
+        //otherwise run a specific jquery search
+    } else if (query.query==='jquery') {
+
+        client.execute('open Colenso_TEIs');
+
+        var myquery = "XQUERY declare namespace tei= 'http://www.tei-c.org/ns/1.0'; " ;
+        //var myquery = "XQUERY " ;
+        myquery = myquery + query.search;
+        console.log(myquery);
+
+        //var result = client.query(myquery);
+
+        client.execute( myquery, function(error, result){
             if(error) {
                 console.error(error);
             } else{
@@ -64,9 +111,9 @@ router.get('/search', function(req, res, next) {
             console.log('session exited');
         });
 
+    }
 
 });
-
 
 
 
@@ -103,10 +150,6 @@ router.post('/submit', function(req, res, next) {
     });
 
 });
-
-
-
-
 
 
 module.exports = router;
