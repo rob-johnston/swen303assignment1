@@ -1,5 +1,6 @@
 //
-   Created by rob on 16/03/16.
+   Created by rob on 23/03/16.
+
 
 extends ../node_modules/jade-bootstrap/_bootstrap
 
@@ -19,20 +20,20 @@ html
             .container
             p Welcome to #{title}. Home of historical documents.
 
-            if test
-                +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],1)
-                br
-                br
-                br
-                h1 Historical Document Submission
-                p  Here you can enter the XML for a new document and add it to our database!
-
-                div.searchPlace
-                    form(id = 'submitbox', name ='submit', action='/submit', method='POST')
-                        +input("text","text", "Enter file name here", "Filename", value = "name")
-                        +submit("Submit")
-                        br
-                        textarea(id = 'myTextArea', name = 'text', style= "width:800px; height:400px")
+            +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],2)
+            br
+            br
+            br
+            h1 Historical Document Editor
+            p  Here you can enter load the xml from an existing document and update it!
+            div.searchPlace
+                div.row
+                    div.col-md-4
+                        form(id = 'submitbox', name ='submit', action='/submit', method='POST')
+                            +input("text","text", "Enter file name here", "Filename", value = "name")
+                            +submit("Submit")
+                            br
+                            textarea(id = 'myTextArea', name = 'text', style= "width:100%; height:400px")
 
 
         div.bottom
@@ -48,3 +49,4 @@ html
 
             .col-md-3
                 p some more text
+

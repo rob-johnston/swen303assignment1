@@ -17,20 +17,20 @@ html
             p Welcome to #{title}. Home of historical documents.
 
 
-                +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"#"}],0)
+                +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],0)
                 br
                 br
                 br
                 div.row
                     div.col-md-4
                         form(id = 'searchbox', name ='search', action='/search', method='GET')
-                            +input("text","text","Search","Search", value = "search", length=100)
+                            +input("text","text","Search","Search", value = "search", length=150)
                             br
                             input(type="radio", name="query", value="standard",checked)
                             p Standard Search
                             input(type="radio", name="query", value="jquery")
                             p JQUERY search
-                            +submit("Submit")
+                            +submit("Search")
 
                 br
                 br
