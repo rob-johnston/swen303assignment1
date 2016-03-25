@@ -40,10 +40,84 @@ router.get('/submit', function(req, res, next) {
 router.get('/edit', function(req, res, next) {
     text="";
 
-    res.render('edit', {title: 'Colenso Project'});
+    res.render('edit', {title: 'Colenso Project', content:''});
+
+});
+
+router.get('/submitchanges', function(req, res, next) {
+    text="";
+
+    res.render('edit', {title: 'Colenso Project', content:''});
+
 });
 
 
+/* deals with loading up an xml file to edit*/
+
+router.get('/loadfile', function(req,res,next){
+
+
+    var urlparts = url.parse(req.url, true);
+    console.log(urlparts.query.name);
+
+
+    var client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
+    //create and xquery string for getting whats in the document, also be nice and add
+    //the root directory to make things a little easier for the user
+    var queryString = "XQUERY doc(\'" + "Colenso_TEIs/" + urlparts.query.name + "\')";
+    console.log(queryString);
+
+    client.execute('OPEN Colenso_TEIs', function(error, result) {
+        if (error) {
+            console.log("error opening DB");
+        }
+        else {
+            console.log("DB opened");
+        }
+    });
+
+
+    client.execute(queryString, function(error, result){
+
+        res.render('edit', {title: 'Colenso Project', content: result.result, loadedfile:urlparts.query.name});
+    });
+
+    client.execute('exit', function () {
+        console.log('session exited');
+    });
+
+});
+
+/* replaces a file in the database with a new file, the second half of the edit function basically */
+router.post('/submitchanges', function(req,res,next){
+
+    var client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
+    var urlparts = url.parse(req.url, true);
+
+    client.execute('OPEN Colenso_TEIs', function(error,result){
+        if(!error){
+            console.log("DB opened");
+        }
+    });
+
+    console.log("replacing to path : " + req.body.file );
+
+    var textToSubmit = req.body.text;
+    var path = req.body.file;
+
+
+    client.replace(path,textToSubmit, function(error, result){
+        if(error){
+            res.render('edit', {title: 'Colenso Project', content: "Problem Submitting Edited File", loadedfile:""});
+        } else {
+            res.render('edit', {title: 'Colenso Project', content: "Your File Has Been Edited and Submitted", loadedfile:""});
+        }
+
+    });
+
+
+
+});
 
 
 
@@ -131,18 +205,21 @@ router.post('/submit', function(req, res, next) {
         }
     });
 
+
     //get text
-    console.log(req.body.Submit);
+
+    console.log(req.body.text);
+
     console.log(req.body.name);
 
-    client.add(req.body.name, req.body.Submit, function(error, result){
+    client.add(req.body.name, req.body.text, function(error, result){
         if(error){
             console.log("something went wrong when adding");
-            res.render('searchpage', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Problem while uploading, document no submitted!"});
+            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Problem while uploading, document not submitted!"});
         }
         else {
             console.log("file submitted");
-            res.render('searchpage', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Document Submitted!"});
+            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Document Submitted!"});
         }
     });
             client.execute('exit', function () {

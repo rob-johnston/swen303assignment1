@@ -19,11 +19,15 @@ body {
     font-color: #e5e5e5;
 }
 
-.searchPlace {
-   font-size:26px;
 
-}
 
 .inputBox {
     height:300px;
+}
+
+
+
+.infotext p{
+    font-size: 24px;
+    color: #ff2b1d;
 }

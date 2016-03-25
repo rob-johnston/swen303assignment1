@@ -10,6 +10,7 @@ html
         link(rel='stylesheet', href='stylesheets/style.css')
 
     block body
+        link(rel='stylesheet', href='stylesheets/style.css')
         +navbar("Colenso Project", "dropdown_menu")
             +nav_item("/") Home
             +nav_item("/searchpage","active") Documents
@@ -19,20 +20,21 @@ html
             .container
             p Welcome to #{title}. Home of historical documents.
 
-            if test
-                +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],1)
-                br
-                br
-                br
-                h1 Historical Document Submission
-                p  Here you can enter the XML for a new document and add it to our database!
+            +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],1)
+            br
+            br
+            br
+            h1 Historical Document Submission
+            p  Here you can enter the XML for a new document and add it to our database!
 
-                div.searchPlace
-                    form(id = 'submitbox', name ='submit', action='/submit', method='POST')
-                        +input("text","text", "Enter file name here", "Filename", value = "name")
-                        +submit("Submit")
-                        br
-                        textarea(id = 'myTextArea', name = 'text', style= "width:800px; height:400px")
+            div.searchPlace
+                div.infotext
+                    p #{message}
+                form(id = 'submitbox', name ='submit', action='/submit', method='POST')
+                    +input("text","text", "Enter file name here", "Filename", value = "name")
+                    +submit("Submit New XML File")
+                    br
+                    textarea(id = 'myTextArea', name = 'text', style= "min-width:300px; height:400px; width:100%", value="myContent", form = 'submitbox')
 
 
         div.bottom

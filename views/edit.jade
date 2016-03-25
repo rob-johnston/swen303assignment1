@@ -27,13 +27,20 @@ html
             h1 Historical Document Editor
             p  Here you can enter load the xml from an existing document and update it!
             div.searchPlace
-                div.row
-                    div.col-md-4
-                        form(id = 'submitbox', name ='submit', action='/submit', method='POST')
-                            +input("text","text", "Enter file name here", "Filename", value = "name")
-                            +submit("Submit")
-                            br
-                            textarea(id = 'myTextArea', name = 'text', style= "width:100%; height:400px")
+                form(id = 'loadbox', name ='load', action='/loadfile', method='GET')
+                    +input("text","text", "Enter file name here", "Filename", value = "name")
+                    +submit("Load File To Edit")
+                    br
+
+                form(id='submitchanges', name = 'submitchanges', action='/submitchanges', method= 'POST')
+                    - loadedfile;
+                    br
+                    input(type='hidden',name="file", value = '#{loadedfile}')
+                    Currently Editing: !{loadedfile}
+                    textarea(id = 'myTextArea', name = 'text', style= "min-width:300px; height:400px; width:100%")
+                        !{content}
+
+                    +submit("Submit Changes to File")
 
 
         div.bottom
