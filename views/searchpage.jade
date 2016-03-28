@@ -7,14 +7,29 @@ html
         link(rel='stylesheet', href='stylesheets/style.css')
 
     block body
-          +navbar("Colenso Project", "dropdown_menu")
+        +navbar("Colenso Project", "dropdown_menu")
             +nav_item("/") Home
             +nav_item("/searchpage","active") Documents
-          + img-responsive-center("images/logo.jpg","Responsive Image")
+
+
+
+
+        .container
+            .row
+                .col-md-4
+                    p
+                .co-md-3
+                    div.picture
+                        a(href="/")
+                            img(src="images/logo.jpg")
+
+                    div.minititle
+                        h2 A celebration of his life and ideas
+
           .container
-            h1 #{title}
+            h1 Document Database
             .container
-            p Welcome to #{title}. Home of historical documents.
+            p Welcome to the #{title}. Home of historical documents.
 
 
                 +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],0)
