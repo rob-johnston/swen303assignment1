@@ -11,14 +11,22 @@ html
 
 
     block body
+
         +navbar("Colenso Project", "dropdown_menu")
             +nav_item("/", "active") Home
             +nav_item("/searchpage") Documents
 
+        .row
+            .col-md-4
+                p nn
 
-        +img-responsive-center("images/logo.jpg","Responsive Image")
-        div.minititle
-            h2 A celebration of his life and ideas
+            .col-md-4
+                +img-responsive-center("images/logo.jpg","Responsive Image", "/")
+                 div.minititle
+                    h2 A celebration of his life and ideas
+            .col-md-4
+
+                 p two
 
         div.boxes
             link(rel='stylesheet', href='stylesheets/style2.css')
@@ -26,22 +34,23 @@ html
                 .col-md-3
                     div.first
                         div.head
-                            p Historical Documents
+                            p #[a(href="/searchpage") Documents]
                             a(href="/searchpage")
-                                +img-responsive-center("images/letter2.jpg", "Responsive Image", "/searchpage")
+                                +img-responsive-center("images/letter.jpg", "Responsive Image", "/searchpage")
                             div.foot
                                 p #[a(href="/searchpage") Search all documents]
                 .col-md-3
                     div.second
                         div.head
-                            p The Project
+                            p #[a(href="/#") The Project]
                             a(href="/#")
                                 +img-responsive-center("images/printingpress.png", "Responsive Image", "/#")
                             div.foot
                                 p #[a(href="/#") Read about the project]
                 .col-md-3
                     div.third
-                        p William Colenso
+                        div.head
+                            p #[a(href="/#") William Colenso]
                             a(href="/#")
                                 +img-responsive-center("images/william.jpg", "Responsive Image", "/#")
                             div.foot
@@ -49,16 +58,17 @@ html
                 .col-md-3
                     div.fourth
                         div.head
-                            p Our Partners
+                            p #[a(href="#") Our Partners]
                         .row
                             .col-sm-6
-                                +img-responsive("images/mtg.jpg", "Responsive Image")
+                                +img-responsive("images/mtg.jpg", "Responsive Image", "/#")
                             .col-sm-6
-                                +img-responsive("images/society.png", "Responsive Image")
+                                +img-responsive("images/society.png", "Responsive Image", "/#")
                         .row
-                            p
+                            br
+                            br
                             .col-sm-6
-                                +img-responsive("images/vic.png", "Responsive Image")
+                                +img-responsive("images/vic.png", "Responsive Image", "/#")
                             .col-sm-6
                         div.foot
                             p #[a(href="#") Read more about our partners]

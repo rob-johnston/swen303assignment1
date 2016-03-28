@@ -31,7 +31,16 @@ html
                             input(type="radio", name="query", value="jquery")
                             p JQUERY search
                             +submit("Search")
+                    div.col-md-2
 
+                    div.col-md-3
+                        p Popular Searches:
+                        ol#popularsearches
+                            li #{popular1}
+                            li #{popular2}
+                            li #{popular3}
+                            li #{popular4}
+                            li #{popular5}
                 br
                 br
                 p #{xmlstuff}

@@ -17,7 +17,10 @@
     margin-right:200px;
     min-width:200px;
 
+
 }
+
+
 
 .first{
     font-size:25px;
@@ -25,6 +28,7 @@
     background-color: #e9e9ea;
     width:100%;
     height:100%;
+    max-height:400px;
 }
 
 .second{
@@ -33,6 +37,7 @@
     background-color: #e9e9ea;
     width:100%;
     height:100%;
+    max-height:400px;
 }
 
 .third{
@@ -43,6 +48,8 @@
     width:100%;
     height:100%;
 
+    max-height:400px;
+
 }
 
 .fourth{
@@ -52,10 +59,14 @@
     image: url("../images/letter.jpg");
     width:100%;
     height:100%;
+
+    max-height:400px;
 }
 
-.head{
+.head p{
     padding-bottom:25px;
+    link-color:black;
+    font-color:black;
 }
 
 .foot{

@@ -26,9 +26,11 @@ html
             br
             h1 Historical Document Editor
             p  Here you can enter load the xml from an existing document and update it!
+            br
+            brn
             div.searchPlace
                 form(id = 'loadbox', name ='load', action='/loadfile', method='GET')
-                    +input("text","text", "Enter file name here", "Filename", value = "name")
+                    +input("text","text", "Enter file name here", "Filename - root directory 'Colenso_TEIs/' is included", value = "name")
                     +submit("Load File To Edit")
                     br
 
