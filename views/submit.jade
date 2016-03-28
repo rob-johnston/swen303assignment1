@@ -31,10 +31,10 @@ html
                 div.infotext
                     p #{message}
                 form(id = 'submitbox', name ='submit', action='/submit', method='POST')
-                    +input("text","text", "Enter file name here", "Filename", value = "name")
+                    +input("text","text", "Enter file name here", "Filename", value = "name") !{contentname}
                     +submit("Submit New XML File")
                     br
-                    textarea(id = 'myTextArea', name = 'text', style= "min-width:300px; height:400px; width:100%", value="myContent", form = 'submitbox')
+                    textarea(id = 'myTextArea', name = 'text', style= "min-width:300px; height:400px; width:100%", value="myContent", form = 'submitbox') !{content}
 
 
         div.bottom

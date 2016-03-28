@@ -38,7 +38,9 @@ html
                     - loadedfile;
                     br
                     input(type='hidden',name="file", value = '#{loadedfile}')
+                    input(type='hidden',name="status", value = '#{status}')
                     Currently Editing: !{loadedfile}
+                    p Status : #{status}
                     textarea(id = 'myTextArea', name = 'text', style= "min-width:300px; height:400px; width:100%")
                         !{content}
 

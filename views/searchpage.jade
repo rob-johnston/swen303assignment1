@@ -22,15 +22,18 @@ html
                 br
                 br
                 div.row
-                    div.col-md-4
+                    div.col-md-7
                         form(id = 'searchbox', name ='search', action='/search', method='GET')
-                            +input("text","text","Search","Search", value = "search", length=150)
-                            br
-                            input(type="radio", name="query", value="standard",checked)
-                            p Standard Search
-                            input(type="radio", name="query", value="jquery")
-                            p JQUERY search
-                            +submit("Search")
+                            .row
+                                .col-md-3
+                                    input(type="radio", name="query", value="standard",checked)
+                                    p Standard Search
+                                    input(type="radio", name="query", value="jquery")
+                                    p JQUERY search
+
+                                .col-md-9
+                                    +input("text","text","Search","Search", value = "search", length=150)
+                                    +submit("Search")
                     div.col-md-2
 
                     div.col-md-3

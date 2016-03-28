@@ -24,6 +24,7 @@
 
 .first{
     font-size:25px;
+    color:black;
     border: 25px solid #e9e9ea;
     background-color: #e9e9ea;
     width:100%;
@@ -63,10 +64,15 @@
     max-height:400px;
 }
 
-.head p{
+.head{
     padding-bottom:25px;
-    link-color:black;
-    font-color:black;
+    color:#000000; !important;
+    color: #000000; !important;
+}
+
+.head p{
+   color:black;
+   color:black;
 }
 
 .foot{

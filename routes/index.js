@@ -113,9 +113,9 @@ router.post('/submitchanges', function(req,res,next){
 
     client.replace(path,textToSubmit, function(error, result){
         if(error){
-            res.render('edit', {title: 'Colenso Project', content: "Problem Submitting Edited File!!!!\n  \n" + req.body.text, loadedfile:""});
+            res.render('edit', {title: 'Colenso Project', content: req.body.text, loadedfile:req.body.file, status:"File NOT submitted, please check your xml"});
         } else {
-            res.render('edit', {title: 'Colenso Project', content: "Your File Has Been Edited and Submitted", loadedfile:""});
+            res.render('edit', {title: 'Colenso Project',  loadedfile:"", status:"File submitted successfuly"});
         }
 
     });
@@ -271,18 +271,18 @@ router.post('/submit', function(req, res, next) {
 
     //get text
 
-    console.log(req.body.text);
 
+    var thetext = req.body.text.repeat(1);
     console.log(req.body.name);
 
     client.add(req.body.name, req.body.text, function(error, result){
         if(error){
             console.log("something went wrong when adding");
-            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Problem while uploading, document not submitted!"});
+            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Problem while uploading, document not submitted!", content:thetext, contentname:req.body.name});
         }
         else {
             console.log("file submitted");
-            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Document Submitted!"});
+            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Document Submitted!", content:thetext, contentname:req.body.name});
         }
     });
             client.execute('exit', function () {

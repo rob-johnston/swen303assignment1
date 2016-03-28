@@ -17,16 +17,12 @@ html
             +nav_item("/searchpage") Documents
 
         .row
-            .col-md-4
-                p nn
 
-            .col-md-4
-                +img-responsive-center("images/logo.jpg","Responsive Image", "/")
-                 div.minititle
-                    h2 A celebration of his life and ideas
-            .col-md-4
-
-                 p two
+            div.picture
+                a(href="/")
+                +img-responsive-center("images/logo.jpg","Responsive Image")
+            div.minititle
+                h2 A celebration of his life and ideas
 
         div.boxes
             link(rel='stylesheet', href='stylesheets/style2.css')
@@ -34,7 +30,9 @@ html
                 .col-md-3
                     div.first
                         div.head
-                            p #[a(href="/searchpage") Documents]
+                            link(rel='stylesheet', href='stylesheets/style2.css')
+                            a(href="/searchpage")
+                                p Documents
                             a(href="/searchpage")
                                 +img-responsive-center("images/letter.jpg", "Responsive Image", "/searchpage")
                             div.foot
@@ -42,7 +40,8 @@ html
                 .col-md-3
                     div.second
                         div.head
-                            p #[a(href="/#") The Project]
+                            a(href="/#")
+                                p The Project
                             a(href="/#")
                                 +img-responsive-center("images/printingpress.png", "Responsive Image", "/#")
                             div.foot
@@ -50,7 +49,8 @@ html
                 .col-md-3
                     div.third
                         div.head
-                            p #[a(href="/#") William Colenso]
+                            a(href="/#")
+                            p William Colenso
                             a(href="/#")
                                 +img-responsive-center("images/william.jpg", "Responsive Image", "/#")
                             div.foot
@@ -58,18 +58,17 @@ html
                 .col-md-3
                     div.fourth
                         div.head
-                            p #[a(href="#") Our Partners]
+                            a(href="#")
+                                p Our Partners
                         .row
                             .col-sm-6
                                 +img-responsive("images/mtg.jpg", "Responsive Image", "/#")
                             .col-sm-6
                                 +img-responsive("images/society.png", "Responsive Image", "/#")
                         .row
-                            br
-                            br
+
                             .col-sm-6
-                                +img-responsive("images/vic.png", "Responsive Image", "/#")
-                            .col-sm-6
+
                         div.foot
                             p #[a(href="#") Read more about our partners]
 
