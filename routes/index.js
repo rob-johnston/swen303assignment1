@@ -190,10 +190,10 @@ router.get('/search', function(req, res, next) {
 
 
             if(arrayOfWords[i]==="&") {
-                altquery = altquery + ' /descendant-or-self::*[text() contains text "' + arrayOfWords[i] + '\"] and ';
+                altquery = altquery + ' /descendant-or-self::*[text() contains text "' + arrayOfWords[i] + '\"] ftand ';
             }
             else if (arrayOfWords[i]==="!"){
-                    altquery = altquery + ' /descendant-or-self::*[text() contains text "' + arrayOfWords[i] + '\"] not ';
+                    altquery = altquery + ' /descendant-or-self::*[text() contains text "' + arrayOfWords[i] + '\"] ftnot ';
                 }
              else {
 
@@ -229,21 +229,42 @@ router.get('/search', function(req, res, next) {
 
         client.execute('open Colenso_TEIs');
 
-        var myquery = "XQUERY declare namespace tei= 'http://www.tei-c.org/ns/1.0'; " ;
-        //var myquery = "XQUERY " ;
+        var myquery = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0'; " ;
+
         myquery = myquery + query.search;
         console.log(myquery);
 
         //var result = client.query(myquery);
+        var success;
 
         client.execute( myquery, function(error, result){
             if(error) {
                 console.error(error);
+                success=false;
             } else{
+                success=true;
                 //result.result=result.result.replace(/<\/p>/g,"\n");
                 res.render('searchpage', { xmlstuff: result.result, title: 'Colenso Project', queryType: query.query, popular1:stringarray[0], popular2:stringarray[1], popular3:stringarray[2], popular4:stringarray[3], popular5:stringarray[4]});
             }
+
+
+
         });
+
+        if(!success){
+            console.log("trying alt query");
+            var alternativequery = "XQUERY declare namespace tei= 'http://www.tei-c.org/ns/1.0'; " ;
+            alternativequery= alternativequery+query.search;
+            client.execute(alternativequery,function(error,result){
+                if(error){
+                    console.log("total error")
+                }
+                else {
+                    res.render('searchpage', { xmlstuff: result.result, title: 'Colenso Project', queryType: query.query, popular1:stringarray[0], popular2:stringarray[1], popular3:stringarray[2], popular4:stringarray[3], popular5:stringarray[4]});
+                }
+
+            });
+        }
         client.execute('exit', function () {
             console.log('session exited');
         });
@@ -278,11 +299,11 @@ router.post('/submit', function(req, res, next) {
     client.add(req.body.name, req.body.text, function(error, result){
         if(error){
             console.log("something went wrong when adding");
-            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Problem while uploading, document not submitted!", content:thetext, contentname:req.body.name});
+            res.render('submit', { title: 'Colenso Project', submissionMessage: "Submission Failed", message:"Problem while uploading, document not submitted!", content:thetext, contentname:req.body.name});
         }
         else {
             console.log("file submitted");
-            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submited to database", message:"Document Submitted!", content:thetext, contentname:req.body.name});
+            res.render('submit', { title: 'Colenso Project', submissionMessage: "file submitted to database", message:"Document Submitted!", content:thetext, contentname:req.body.name});
         }
     });
             client.execute('exit', function () {
