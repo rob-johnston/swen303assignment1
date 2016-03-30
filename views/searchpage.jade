@@ -26,10 +26,10 @@ html
                     div.minititle
                         h2 A celebration of his life and ideas
 
-          .container
-            h1 Document Database
             .container
-            p Welcome to the #{title}. Home of historical documents.
+                h1 Document Database
+                .container
+                p Welcome to the #{title}. Home of historical documents.
 
 
                 +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],0)
@@ -46,37 +46,48 @@ html
                                     input(type="radio", name="query", value="jquery")
                                     p JQUERY search
 
+
+
                                 .col-md-9
-                                    +input("text","text","Search","Search", value = "search", length=150)
+                                    +input("text","text","" ,"Search - database name is 'Colenso_TEIs'", value = "search", length=150)
                                     +submit("Search")
                     div.col-md-2
 
                     div.col-md-3
-                        p Popular Searches:
-                        ol#popularsearches
-                            li #{popular1}
-                            li #{popular2}
-                            li #{popular3}
-                            li #{popular4}
-                            li #{popular5}
-                br
-                br
-                p #{xmlstuff}
+                        div.searches
+                            link(rel='stylesheet', href='stylesheets/style2.css')
+                            p Popular Searches:
+                            ol#popularsearches
+                                li #{popular1}
+                                li #{popular2}
+                                li #{popular3}
+                                li #{popular4}
+                                li #{popular5}
+                    br
+                    br
+                    p #{xmlstuff}
 
 
 
 
           div.bottom
                 link(rel='stylesheet', href='stylesheets/style2.css')
-                .col-md-3
+                .col-md-4
+
+                .col-md-2
                     ul#listings
-                        li this is
-                        li stuff that
-                        li i want to
-                        li write
-                .col-md-3
+                        li about
+                        li colenso project
+                        li biography
+                        li museum & art gallery
+                        li collections
+                        li image gallery
+                .col-md-2
+                        li project team
+                        li william colenso biography
+                        li bicentenary
+                        li partners
+                        li speakers
+                        li programme
 
-
-                .col-md-3
-                    p some more text
 

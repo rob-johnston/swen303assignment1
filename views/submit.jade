@@ -27,6 +27,11 @@ html
                     div.minititle
                         h2 A celebration of his life and ideas
 
+            .container
+                h1 Document Database
+                .container
+                p Welcome to the #{title}. Home of historical documents.
+
 
             +nav-tabs-justified([{text:"Search",href:"/searchpage"},{text:"Submit",href:"/submit"},{text:"Edit",href:"/edit"}],1)
             br
@@ -34,12 +39,13 @@ html
             br
             h1 Historical Document Submission
             p  Here you can enter the XML for a new document and add it to our database!
+            br
 
             div.searchPlace
                 div.infotext
                     p #{message}
                 form(id = 'submitbox', name ='submit', action='/submit', method='POST')
-                    +input("text","text", "Enter file name here", "Filename", value = "name") !{contentname}
+                    +input("text","text", "Enter file name here", "Filename - root directory 'Colenso_TEIs/' is included", value = "name") !{contentname}
                     +submit("Submit New XML File")
                     br
                     textarea(id = 'myTextArea', name = 'text', style= "min-width:300px; height:400px; width:100%", value="myContent", form = 'submitbox') !{content}
@@ -47,14 +53,22 @@ html
 
         div.bottom
             link(rel='stylesheet', href='stylesheets/style2.css')
-            .col-md-3
+            .col-md-4
+
+            .col-md-2
                 ul#listings
-                    li this is
-                    li stuff that
-                    li i want to
-                    li write
-            .col-md-3
+                    li about
+                    li colenso project
+                    li biography
+                    li museum & art gallery
+                    li collections
+                    li image gallery
+            .col-md-2
+                li project team
+                li william colenso biography
+                li bicentenary
+                li partners
+                li speakers
+                li programme
 
 
-            .col-md-3
-                p some more text

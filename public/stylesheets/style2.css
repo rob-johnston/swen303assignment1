@@ -81,8 +81,10 @@
 }
 
 .bottom {
-    font-color:#5e5e5e;
-    height:200px;
+    padding-top:30px;
+    color: #e1e1e2;
+    min-height:200px;
+    height:100%;
     width:100%;
     background-color: #839f39;
     margin-top:100px;
@@ -91,4 +93,8 @@
 @font-face ul{
     font-color: #f2f2f2 !important;
 
+}
+
+.searches p{
+    color:blue;
 }

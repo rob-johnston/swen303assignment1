@@ -7,14 +7,6 @@
     src: url("/public/stylesheets/Montserrat-Regular.otf") format("opentype");
 }
 
-.bottom {
-
-    height:200px;
-    width:100%;
-    background-color: #839f39;
-    margin-top:100px;
-    font-color: #e5e5e5;
-}
 
 
 
@@ -27,4 +19,8 @@
 .infotext p{
     font-size: 24px;
     color: #ff2b1d;
+}
+
+.searches{
+    color:greenyellow;
 }
